@@ -1,0 +1,87 @@
+<div class="container-fluid">
+  <div class="mt-3">
+    <div class="card">
+      <div class="card-header">
+        <h3>User Details</h3>
+      </div>
+      <div class="card-body">
+        <form autocomplete="off" name="userForm" #userForm="ngForm" (ngSubmit)="save()" novalidate>
+          <div class="row">
+            <div class=" col-lg-6 col-md-6 col-12">
+              <div class="form-group">
+                <label for="name">First Name</label>
+                <input type="text" class="form-control" name="firstname" [(ngModel)]="firstname"
+                  placeholder="Enter First Name" required>
+                <div
+                  [hidden]="!(userForm.controls.firstname?.dirty && userForm.controls.firstname?.invalid || userForm.controls.firstname?.touched)">
+                  <small class="form-text text-danger" [hidden]="!userForm.controls.firstname?.errors?.required">
+                    FirstName is required.
+                  </small>
+                </div>
+              </div>
+              <div class="form-group">
+                <label for="lastname">Last Name</label>
+                <input type="text" class="form-control" name="lastname" [(ngModel)]="lastname"
+                  placeholder="Enter Last Name" required>
+                <div
+                  [hidden]="!(userForm.controls.lastname?.dirty && userForm.controls.lastname?.invalid || userForm.controls.lastname?.touched)">
+                  <small class="form-text text-danger" [hidden]="!userForm.controls.lastname?.errors?.required">
+                    LastName is required.
+                  </small>
+                </div>
+              </div>
+              <div class="form-group">
+                <label for="phone">Phone Number</label>
+                <input type="number" class="form-control" name="phone" [(ngModel)]="phone"
+                  placeholder="Enter Phone Number" pattern="^(?:(?:\+|0{0,2})91(\s*[\-]\s*)?|[0]?)?[789]\d{9}$"
+                  minlength="10" maxlength="10"  required>
+                <div
+                  [hidden]="!(userForm.controls.phone?.dirty && userForm.controls.phone?.invalid || userForm.controls.phone?.touched)">
+                  <small class="form-text text-danger" [hidden]="!userForm.controls.phone?.errors?.required">
+                    Phone Number is required.
+                  </small>
+                  <small class="form-text text-danger" [hidden]="!userForm.controls.phone?.errors?.pattern">Invalid Phone Number</small>
+                </div>
+              </div>
+              <div class="form-group">
+                <label for="email">Email Id</label>
+                <input type="email" class="form-control" name="email" [(ngModel)]="email" placeholder="Enter Your Email"
+                  pattern="^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$" required>
+                <div [hidden]="!(userForm.controls.email?.dirty && userForm.controls.email?.invalid || userForm.controls.email?.touched)">
+                  <small class="form-text text-danger" [hidden]="!userForm.controls.email?.errors?.required">
+                    Email is required.
+                  </small>
+                  <small class="text-danger" [hidden]="!userForm.controls.email?.errors?.pattern">
+                    Invalid Email
+                  </small>
+                </div>
+              </div>
+            </div>
+            <div class="col-lg-6 col-md-6 col-12">
+
+              <div class="form-group">
+                <label for="image">Images</label>
+                  <input class="form-control" name="file" type="file" (change)="onFileChange($event)" accept="image/*">
+              </div>
+            
+              <div class="form-group">
+                <label for="college">File</label>
+                <input type="file" class="form-control" name="file" (change)="onFileChange1($event)"
+                  accept=".xlsx,.xls,.doc, .docx,.ppt, .pptx,.txt,.pdf" [(ngModel)]="file">
+              </div>
+            </div>
+          </div>
+          <div class="form-actions">
+            <div class="row d-flex justify-content-center">
+              <button type="submit" 
+                class="btn btn-success mr-1" style="margin-top: 10px;">Save</button>
+              <a [routerLink]="[ '/userdetailslist']"><button type="button" class="btn btn-success"
+                  style="margin-top: 10px;">Cancel</button>
+              </a>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
